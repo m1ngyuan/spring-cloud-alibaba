@@ -29,7 +29,7 @@ import feign.Response;
 import io.seata.core.context.RootContext;
 
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author xiaojing
@@ -63,7 +63,7 @@ public class SeataFeignClient implements Client {
 
 		String xid = RootContext.getXID();
 
-		if (StringUtils.isEmpty(xid)) {
+		if (ObjectUtils.isEmpty(xid)) {
 			return request;
 		}
 

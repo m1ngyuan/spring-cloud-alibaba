@@ -49,7 +49,7 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessagingException;
 import org.springframework.messaging.support.ErrorMessage;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author <a href="mailto:fangjian0423@gmail.com">Jim</a>
@@ -164,7 +164,7 @@ public class RocketMQMessageHandler extends AbstractMessageHandler implements Li
 			String tags = Optional
 					.ofNullable(message.getHeaders().get(RocketMQHeaders.TAGS)).orElse("")
 					.toString();
-			if (!StringUtils.isEmpty(tags)) {
+			if (!ObjectUtils.isEmpty(tags)) {
 				topicWithTags.append(":").append(tags);
 			}
 

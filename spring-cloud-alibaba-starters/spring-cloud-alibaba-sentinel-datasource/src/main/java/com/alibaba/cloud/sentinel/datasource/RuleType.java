@@ -27,7 +27,7 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import com.alibaba.csp.sentinel.slots.block.flow.param.ParamFlowRule;
 import com.alibaba.csp.sentinel.slots.system.SystemRule;
 
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Enum for {@link AbstractRule} class, using in
@@ -112,7 +112,7 @@ public enum RuleType {
 	}
 
 	public static Optional<RuleType> getByName(String name) {
-		if (StringUtils.isEmpty(name)) {
+		if (ObjectUtils.isEmpty(name)) {
 			return Optional.empty();
 		}
 		return Arrays.stream(RuleType.values())

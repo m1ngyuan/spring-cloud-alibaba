@@ -44,7 +44,7 @@ import org.springframework.cloud.commons.util.InetUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import static com.alibaba.nacos.api.PropertyKeyConst.ACCESS_KEY;
 import static com.alibaba.nacos.api.PropertyKeyConst.CLUSTER_NAME;
@@ -235,9 +235,9 @@ public class NacosDiscoveryProperties {
 		namespace = Objects.toString(namespace, "");
 		logName = Objects.toString(logName, "");
 
-		if (StringUtils.isEmpty(ip)) {
+		if (ObjectUtils.isEmpty(ip)) {
 			// traversing network interfaces if didn't specify a interface
-			if (StringUtils.isEmpty(networkInterface)) {
+			if (ObjectUtils.isEmpty(networkInterface)) {
 				ip = inetUtils.findFirstNonLoopbackHostInfo().getIpAddress();
 			}
 			else {
@@ -258,7 +258,7 @@ public class NacosDiscoveryProperties {
 					}
 				}
 
-				if (StringUtils.isEmpty(ip)) {
+				if (ObjectUtils.isEmpty(ip)) {
 					throw new RuntimeException("cannot find available ip from"
 							+ " network interface " + networkInterface);
 				}
@@ -540,47 +540,47 @@ public class NacosDiscoveryProperties {
 
 	public void overrideFromEnv(Environment env) {
 
-		if (StringUtils.isEmpty(this.getServerAddr())) {
+		if (ObjectUtils.isEmpty(this.getServerAddr())) {
 			String serverAddr = env
 					.resolvePlaceholders("${spring.cloud.nacos.discovery.server-addr:}");
-			if (StringUtils.isEmpty(serverAddr)) {
+			if (ObjectUtils.isEmpty(serverAddr)) {
 				serverAddr = env.resolvePlaceholders(
 						"${spring.cloud.nacos.server-addr:localhost:8848}");
 			}
 			this.setServerAddr(serverAddr);
 		}
-		if (StringUtils.isEmpty(this.getNamespace())) {
+		if (ObjectUtils.isEmpty(this.getNamespace())) {
 			this.setNamespace(env
 					.resolvePlaceholders("${spring.cloud.nacos.discovery.namespace:}"));
 		}
-		if (StringUtils.isEmpty(this.getAccessKey())) {
+		if (ObjectUtils.isEmpty(this.getAccessKey())) {
 			this.setAccessKey(env
 					.resolvePlaceholders("${spring.cloud.nacos.discovery.access-key:}"));
 		}
-		if (StringUtils.isEmpty(this.getSecretKey())) {
+		if (ObjectUtils.isEmpty(this.getSecretKey())) {
 			this.setSecretKey(env
 					.resolvePlaceholders("${spring.cloud.nacos.discovery.secret-key:}"));
 		}
-		if (StringUtils.isEmpty(this.getLogName())) {
+		if (ObjectUtils.isEmpty(this.getLogName())) {
 			this.setLogName(
 					env.resolvePlaceholders("${spring.cloud.nacos.discovery.log-name:}"));
 		}
-		if (StringUtils.isEmpty(this.getClusterName())) {
+		if (ObjectUtils.isEmpty(this.getClusterName())) {
 			this.setClusterName(env.resolvePlaceholders(
 					"${spring.cloud.nacos.discovery.cluster-name:}"));
 		}
-		if (StringUtils.isEmpty(this.getEndpoint())) {
+		if (ObjectUtils.isEmpty(this.getEndpoint())) {
 			this.setEndpoint(
 					env.resolvePlaceholders("${spring.cloud.nacos.discovery.endpoint:}"));
 		}
-		if (StringUtils.isEmpty(this.getGroup())) {
+		if (ObjectUtils.isEmpty(this.getGroup())) {
 			this.setGroup(
 					env.resolvePlaceholders("${spring.cloud.nacos.discovery.group:}"));
 		}
-		if (StringUtils.isEmpty(this.getUsername())) {
+		if (ObjectUtils.isEmpty(this.getUsername())) {
 			this.setUsername(env.resolvePlaceholders("${spring.cloud.nacos.username:}"));
 		}
-		if (StringUtils.isEmpty(this.getPassword())) {
+		if (ObjectUtils.isEmpty(this.getPassword())) {
 			this.setPassword(env.resolvePlaceholders("${spring.cloud.nacos.password:}"));
 		}
 	}

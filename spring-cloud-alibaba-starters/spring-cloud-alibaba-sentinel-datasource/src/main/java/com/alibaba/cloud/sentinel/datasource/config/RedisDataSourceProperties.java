@@ -21,7 +21,7 @@ import java.util.List;
 
 import com.alibaba.cloud.sentinel.datasource.factorybean.RedisDataSourceFactoryBean;
 
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Redis Properties class Using by {@link DataSourcePropertiesConfiguration} and
@@ -83,17 +83,17 @@ public class RedisDataSourceProperties extends AbstractDataSourceProperties {
 	@Override
 	public void preCheck(String dataSourceName) {
 		super.preCheck(dataSourceName);
-		if (StringUtils.isEmpty(ruleKey)) {
+		if (ObjectUtils.isEmpty(ruleKey)) {
 			throw new IllegalArgumentException(
 					"RedisDataSource  ruleKey can not be empty");
 		}
 
-		if (StringUtils.isEmpty(channel)) {
+		if (ObjectUtils.isEmpty(channel)) {
 			throw new IllegalArgumentException(
 					"RedisDataSource  channel can not be empty");
 		}
 
-		if (StringUtils.isEmpty(masterId)) {
+		if (ObjectUtils.isEmpty(masterId)) {
 			throw new IllegalArgumentException(
 					"RedisDataSource  sentinel model，masterId can not be empty");
 		}

@@ -40,7 +40,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.DeprecatedConfigurationProperty;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import static com.alibaba.nacos.api.PropertyKeyConst.ACCESS_KEY;
 import static com.alibaba.nacos.api.PropertyKeyConst.CLUSTER_NAME;
@@ -98,20 +98,20 @@ public class NacosConfigProperties {
 	}
 
 	private void overrideFromEnv() {
-		if (StringUtils.isEmpty(this.getServerAddr())) {
+		if (ObjectUtils.isEmpty(this.getServerAddr())) {
 			String serverAddr = environment
 					.resolvePlaceholders("${spring.cloud.nacos.config.server-addr:}");
-			if (StringUtils.isEmpty(serverAddr)) {
+			if (ObjectUtils.isEmpty(serverAddr)) {
 				serverAddr = environment.resolvePlaceholders(
 						"${spring.cloud.nacos.server-addr:localhost:8848}");
 			}
 			this.setServerAddr(serverAddr);
 		}
-		if (StringUtils.isEmpty(this.getUsername())) {
+		if (ObjectUtils.isEmpty(this.getUsername())) {
 			this.setUsername(
 					environment.resolvePlaceholders("${spring.cloud.nacos.username:}"));
 		}
-		if (StringUtils.isEmpty(this.getPassword())) {
+		if (ObjectUtils.isEmpty(this.getPassword())) {
 			this.setPassword(
 					environment.resolvePlaceholders("${spring.cloud.nacos.password:}"));
 		}

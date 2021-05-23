@@ -31,7 +31,7 @@ import org.springframework.cloud.client.discovery.ManagementServerPortUtils;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author xiaojing
@@ -79,7 +79,7 @@ public class NacosRegistration implements Registration, ServiceInstance {
 		Environment env = context.getEnvironment();
 
 		String endpointBasePath = env.getProperty(MANAGEMENT_ENDPOINT_BASE_PATH);
-		if (!StringUtils.isEmpty(endpointBasePath)) {
+		if (!ObjectUtils.isEmpty(endpointBasePath)) {
 			metadata.put(MANAGEMENT_ENDPOINT_BASE_PATH, endpointBasePath);
 		}
 
@@ -89,10 +89,10 @@ public class NacosRegistration implements Registration, ServiceInstance {
 			String contextPath = env
 					.getProperty("management.server.servlet.context-path");
 			String address = env.getProperty("management.server.address");
-			if (!StringUtils.isEmpty(contextPath)) {
+			if (!ObjectUtils.isEmpty(contextPath)) {
 				metadata.put(MANAGEMENT_CONTEXT_PATH, contextPath);
 			}
-			if (!StringUtils.isEmpty(address)) {
+			if (!ObjectUtils.isEmpty(address)) {
 				metadata.put(MANAGEMENT_ADDRESS, address);
 			}
 		}

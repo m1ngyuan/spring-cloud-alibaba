@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import static org.springframework.util.ReflectionUtils.rethrowRuntimeException;
 
@@ -59,7 +59,7 @@ public class NacosServiceRegistry implements ServiceRegistry<Registration> {
 	@Override
 	public void register(Registration registration) {
 
-		if (StringUtils.isEmpty(registration.getServiceId())) {
+		if (ObjectUtils.isEmpty(registration.getServiceId())) {
 			log.warn("No service to register for nacos client...");
 			return;
 		}
@@ -89,7 +89,7 @@ public class NacosServiceRegistry implements ServiceRegistry<Registration> {
 
 		log.info("De-registering from Nacos Server now...");
 
-		if (StringUtils.isEmpty(registration.getServiceId())) {
+		if (ObjectUtils.isEmpty(registration.getServiceId())) {
 			log.warn("No dom to de-register for nacos client...");
 			return;
 		}

@@ -33,7 +33,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author <a href="mailto:fangjian0423@gmail.com">Jim</a>
@@ -59,7 +59,7 @@ public class RocketMQComponent4BinderAutoConfiguration {
 				"${spring.cloud.stream.rocketmq.binder.access-key:${rocketmq.producer.access-key:}}");
 		String sk = environment.resolveRequiredPlaceholders(
 				"${spring.cloud.stream.rocketmq.binder.secret-key:${rocketmq.producer.secret-key:}}");
-		if (!StringUtils.isEmpty(ak) && !StringUtils.isEmpty(sk)) {
+		if (!ObjectUtils.isEmpty(ak) && !ObjectUtils.isEmpty(sk)) {
 			producer = new DefaultMQProducer(RocketMQBinderConstants.DEFAULT_GROUP,
 					new AclClientRPCHook(new SessionCredentials(ak, sk)));
 			producer.setVipChannelEnabled(false);
@@ -67,7 +67,7 @@ public class RocketMQComponent4BinderAutoConfiguration {
 		else {
 			producer = new DefaultMQProducer(RocketMQBinderConstants.DEFAULT_GROUP);
 		}
-		if (StringUtils.isEmpty(configNameServer)) {
+		if (ObjectUtils.isEmpty(configNameServer)) {
 			configNameServer = RocketMQBinderConstants.DEFAULT_NAME_SERVER;
 		}
 		producer.setNamesrvAddr(configNameServer);

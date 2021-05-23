@@ -20,7 +20,7 @@ import javax.validation.constraints.NotEmpty;
 
 import com.alibaba.cloud.sentinel.datasource.factorybean.NacosDataSourceFactoryBean;
 
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Nacos Properties class Using by {@link DataSourcePropertiesConfiguration} and
@@ -56,7 +56,7 @@ public class NacosDataSourceProperties extends AbstractDataSourceProperties {
 
 	@Override
 	public void preCheck(String dataSourceName) {
-		if (StringUtils.isEmpty(serverAddr)) {
+		if (ObjectUtils.isEmpty(serverAddr)) {
 			serverAddr = this.getEnv().getProperty(
 					"spring.cloud.sentinel.datasource.nacos.server-addr",
 					"localhost:8848");

@@ -23,7 +23,7 @@ import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
 import com.alibaba.nacos.api.PropertyKeyConst;
 
 import org.springframework.beans.factory.FactoryBean;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * A {@link FactoryBean} for creating {@link NacosDataSource} instance.
@@ -56,7 +56,7 @@ public class NacosDataSourceFactoryBean implements FactoryBean<NacosDataSource> 
 	@Override
 	public NacosDataSource getObject() throws Exception {
 		Properties properties = new Properties();
-		if (!StringUtils.isEmpty(this.serverAddr)) {
+		if (!ObjectUtils.isEmpty(this.serverAddr)) {
 			properties.setProperty(PropertyKeyConst.SERVER_ADDR, this.serverAddr);
 		}
 		else {
@@ -64,13 +64,13 @@ public class NacosDataSourceFactoryBean implements FactoryBean<NacosDataSource> 
 			properties.setProperty(PropertyKeyConst.SECRET_KEY, this.secretKey);
 			properties.setProperty(PropertyKeyConst.ENDPOINT, this.endpoint);
 		}
-		if (!StringUtils.isEmpty(this.namespace)) {
+		if (!ObjectUtils.isEmpty(this.namespace)) {
 			properties.setProperty(PropertyKeyConst.NAMESPACE, this.namespace);
 		}
-		if (!StringUtils.isEmpty(this.username)) {
+		if (!ObjectUtils.isEmpty(this.username)) {
 			properties.setProperty(PropertyKeyConst.USERNAME, this.username);
 		}
-		if (!StringUtils.isEmpty(this.password)) {
+		if (!ObjectUtils.isEmpty(this.password)) {
 			properties.setProperty(PropertyKeyConst.PASSWORD, this.password);
 		}
 		return new NacosDataSource(properties, groupId, dataId, converter);

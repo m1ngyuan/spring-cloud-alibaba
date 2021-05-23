@@ -29,7 +29,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 public class NacosRefreshHistory {
 
@@ -81,7 +81,7 @@ public class NacosRefreshHistory {
 	}
 
 	private String md5(String data) {
-		if (StringUtils.isEmpty(data)) {
+		if (ObjectUtils.isEmpty(data)) {
 			return null;
 		}
 		if (null == md) {

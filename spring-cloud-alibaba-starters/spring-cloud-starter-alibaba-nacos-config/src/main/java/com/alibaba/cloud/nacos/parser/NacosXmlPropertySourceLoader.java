@@ -35,7 +35,7 @@ import org.springframework.boot.env.PropertiesPropertySourceLoader;
 import org.springframework.core.Ordered;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.Resource;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Parsing for XML requires overwriting the default
@@ -123,11 +123,11 @@ public class NacosXmlPropertySourceLoader extends AbstractPropertySourceLoader
 			String name = node.getNodeName();
 			name = name == null ? "" : name.trim();
 
-			if (StringUtils.isEmpty(name)) {
+			if (ObjectUtils.isEmpty(name)) {
 				continue;
 			}
 
-			String key = StringUtils.isEmpty(parentKey) ? name : parentKey + DOT + name;
+			String key = ObjectUtils.isEmpty(parentKey) ? name : parentKey + DOT + name;
 			NamedNodeMap nodeMap = node.getAttributes();
 			parseNodeAttr(nodeMap, map, key);
 			if (node.getNodeType() == Node.ELEMENT_NODE && node.hasChildNodes()) {
@@ -152,10 +152,10 @@ public class NacosXmlPropertySourceLoader extends AbstractPropertySourceLoader
 				continue;
 			}
 			if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
-				if (StringUtils.isEmpty(node.getNodeName())) {
+				if (ObjectUtils.isEmpty(node.getNodeName())) {
 					continue;
 				}
-				if (StringUtils.isEmpty(node.getNodeValue())) {
+				if (ObjectUtils.isEmpty(node.getNodeValue())) {
 					continue;
 				}
 				map.put(String.join(DOT, parentKey, node.getNodeName()),

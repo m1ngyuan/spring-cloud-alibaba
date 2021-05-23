@@ -34,6 +34,7 @@ import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.support.SpringFactoriesLoader;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import static com.alibaba.cloud.nacos.parser.AbstractPropertySourceLoader.DOT;
@@ -65,10 +66,10 @@ public final class NacosDataParserHandler {
 	 */
 	public List<PropertySource<?>> parseNacosData(String configName, String configValue,
 			String extension) throws IOException {
-		if (StringUtils.isEmpty(configValue)) {
+		if (ObjectUtils.isEmpty(configValue)) {
 			return Collections.emptyList();
 		}
-		if (StringUtils.isEmpty(extension)) {
+		if (ObjectUtils.isEmpty(extension)) {
 			extension = this.getFileExtension(configName);
 		}
 		for (PropertySourceLoader propertySourceLoader : propertySourceLoaders) {
@@ -130,7 +131,7 @@ public final class NacosDataParserHandler {
 	 * @return file extension, default {@code DEFAULT_EXTENSION} if don't get
 	 */
 	public String getFileExtension(String name) {
-		if (StringUtils.isEmpty(name)) {
+		if (ObjectUtils.isEmpty(name)) {
 			return DEFAULT_EXTENSION;
 		}
 		int idx = name.lastIndexOf(DOT);
@@ -141,10 +142,10 @@ public final class NacosDataParserHandler {
 	}
 
 	private String getFileName(String name, String extension) {
-		if (StringUtils.isEmpty(extension)) {
+		if (ObjectUtils.isEmpty(extension)) {
 			return name;
 		}
-		if (StringUtils.isEmpty(name)) {
+		if (ObjectUtils.isEmpty(name)) {
 			return extension;
 		}
 		int idx = name.lastIndexOf(DOT);

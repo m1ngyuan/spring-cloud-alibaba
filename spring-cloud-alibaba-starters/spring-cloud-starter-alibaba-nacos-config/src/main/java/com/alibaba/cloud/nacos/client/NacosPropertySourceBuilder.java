@@ -28,7 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.core.env.PropertySource;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author xiaojing
@@ -83,7 +83,7 @@ public class NacosPropertySourceBuilder {
 		String data = null;
 		try {
 			data = configService.getConfig(dataId, group, timeout);
-			if (StringUtils.isEmpty(data)) {
+			if (ObjectUtils.isEmpty(data)) {
 				log.warn(
 						"Ignore the empty nacos configuration and get it based on dataId[{}] & group[{}]",
 						dataId, group);

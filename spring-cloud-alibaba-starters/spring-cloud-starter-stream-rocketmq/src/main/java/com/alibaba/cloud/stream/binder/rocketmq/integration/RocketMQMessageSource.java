@@ -46,7 +46,7 @@ import org.springframework.integration.endpoint.AbstractMessageSource;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author <a href="mailto:fangjian0423@gmail.com">Jim</a>
@@ -113,13 +113,13 @@ public class RocketMQMessageSource extends AbstractMessageSource<Object>
 			String tags = rocketMQConsumerProperties.getExtension().getTags();
 			String sql = rocketMQConsumerProperties.getExtension().getSql();
 
-			if (!StringUtils.isEmpty(tags) && !StringUtils.isEmpty(sql)) {
+			if (!ObjectUtils.isEmpty(tags) && !ObjectUtils.isEmpty(sql)) {
 				messageSelector = MessageSelector.byTag(tags);
 			}
-			else if (!StringUtils.isEmpty(tags)) {
+			else if (!ObjectUtils.isEmpty(tags)) {
 				messageSelector = MessageSelector.byTag(tags);
 			}
-			else if (!StringUtils.isEmpty(sql)) {
+			else if (!ObjectUtils.isEmpty(sql)) {
 				messageSelector = MessageSelector.bySql(sql);
 			}
 

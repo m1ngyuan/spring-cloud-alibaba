@@ -23,7 +23,7 @@ import com.alibaba.cloud.stream.binder.rocketmq.properties.RocketMQBinderConfigu
 import org.apache.rocketmq.spring.autoconfigure.RocketMQProperties;
 
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author <a href="mailto:fangjian0423@gmail.com">Jim</a>
@@ -38,7 +38,7 @@ public final class RocketMQBinderUtils {
 			RocketMQBinderConfigurationProperties rocketBinderConfigurationProperties,
 			RocketMQProperties rocketMQProperties) {
 		RocketMQBinderConfigurationProperties result = new RocketMQBinderConfigurationProperties();
-		if (StringUtils.isEmpty(rocketMQProperties.getNameServer())) {
+		if (ObjectUtils.isEmpty(rocketMQProperties.getNameServer())) {
 			result.setNameServer(rocketBinderConfigurationProperties.getNameServer());
 		}
 		else {
@@ -46,20 +46,20 @@ public final class RocketMQBinderUtils {
 					Arrays.asList(rocketMQProperties.getNameServer().split(";")));
 		}
 		if (rocketMQProperties.getProducer() == null
-				|| StringUtils.isEmpty(rocketMQProperties.getProducer().getAccessKey())) {
+				|| ObjectUtils.isEmpty(rocketMQProperties.getProducer().getAccessKey())) {
 			result.setAccessKey(rocketBinderConfigurationProperties.getAccessKey());
 		}
 		else {
 			result.setAccessKey(rocketMQProperties.getProducer().getAccessKey());
 		}
 		if (rocketMQProperties.getProducer() == null
-				|| StringUtils.isEmpty(rocketMQProperties.getProducer().getSecretKey())) {
+				|| ObjectUtils.isEmpty(rocketMQProperties.getProducer().getSecretKey())) {
 			result.setSecretKey(rocketBinderConfigurationProperties.getSecretKey());
 		}
 		else {
 			result.setSecretKey(rocketMQProperties.getProducer().getSecretKey());
 		}
-		if (rocketMQProperties.getProducer() == null || StringUtils
+		if (rocketMQProperties.getProducer() == null || ObjectUtils
 				.isEmpty(rocketMQProperties.getProducer().getCustomizedTraceTopic())) {
 			result.setCustomizedTraceTopic(
 					rocketBinderConfigurationProperties.getCustomizedTraceTopic());

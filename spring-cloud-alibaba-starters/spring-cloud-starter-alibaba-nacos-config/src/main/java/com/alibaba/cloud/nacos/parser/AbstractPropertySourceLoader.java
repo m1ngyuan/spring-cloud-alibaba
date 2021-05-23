@@ -28,7 +28,7 @@ import java.util.Set;
 import org.springframework.boot.env.PropertySourceLoader;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.Resource;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Nacos-specific loader, If need to support other methods of parsing,you need to do the
@@ -106,7 +106,7 @@ public abstract class AbstractPropertySourceLoader implements PropertySourceLoad
 			String key = entry.getKey();
 			Object value = entry.getValue();
 
-			String fullKey = StringUtils.isEmpty(parentKey) ? key : key.startsWith("[")
+			String fullKey = ObjectUtils.isEmpty(parentKey) ? key : key.startsWith("[")
 					? parentKey.concat(key) : parentKey.concat(DOT).concat(key);
 
 			if (value instanceof Map) {

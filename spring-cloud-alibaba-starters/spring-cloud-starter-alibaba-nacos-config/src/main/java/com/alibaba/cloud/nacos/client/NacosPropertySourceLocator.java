@@ -33,7 +33,7 @@ import org.springframework.core.env.CompositePropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySource;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author xiaojing
@@ -87,11 +87,11 @@ public class NacosPropertySourceLocator implements PropertySourceLocator {
 		String name = nacosConfigProperties.getName();
 
 		String dataIdPrefix = nacosConfigProperties.getPrefix();
-		if (StringUtils.isEmpty(dataIdPrefix)) {
+		if (ObjectUtils.isEmpty(dataIdPrefix)) {
 			dataIdPrefix = name;
 		}
 
-		if (StringUtils.isEmpty(dataIdPrefix)) {
+		if (ObjectUtils.isEmpty(dataIdPrefix)) {
 			dataIdPrefix = env.getProperty("spring.application.name");
 		}
 

@@ -55,7 +55,7 @@ import org.springframework.context.SmartLifecycle;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.Message;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import static com.alibaba.cloud.stream.binder.rocketmq.RocketMQBinderConstants.ROCKETMQ_RECONSUME_TIMES;
 
@@ -126,7 +126,7 @@ public class RocketMQListenerBindingContainer
 		this.rocketMQMessageChannelBinder = rocketMQMessageChannelBinder;
 		this.consumeMode = rocketMQConsumerProperties.getExtension().getOrderly()
 				? ConsumeMode.ORDERLY : ConsumeMode.CONCURRENTLY;
-		if (StringUtils.isEmpty(rocketMQConsumerProperties.getExtension().getSql())) {
+		if (ObjectUtils.isEmpty(rocketMQConsumerProperties.getExtension().getSql())) {
 			this.selectorType = SelectorType.TAG;
 			this.selectorExpression = rocketMQConsumerProperties.getExtension().getTags();
 		}
@@ -218,7 +218,7 @@ public class RocketMQListenerBindingContainer
 
 		String ak = rocketBinderConfigurationProperties.getAccessKey();
 		String sk = rocketBinderConfigurationProperties.getSecretKey();
-		if (!StringUtils.isEmpty(ak) && !StringUtils.isEmpty(sk)) {
+		if (!ObjectUtils.isEmpty(ak) && !ObjectUtils.isEmpty(sk)) {
 			RPCHook rpcHook = new AclClientRPCHook(new SessionCredentials(ak, sk));
 			consumer = new DefaultMQPushConsumer(consumerGroup, rpcHook,
 					new AllocateMessageQueueAveragely(),

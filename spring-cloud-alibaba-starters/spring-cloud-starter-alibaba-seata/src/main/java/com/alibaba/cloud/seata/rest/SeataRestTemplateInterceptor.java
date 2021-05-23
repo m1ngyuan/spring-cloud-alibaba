@@ -25,7 +25,7 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.support.HttpRequestWrapper;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author xiaojing
@@ -39,7 +39,7 @@ public class SeataRestTemplateInterceptor implements ClientHttpRequestIntercepto
 
 		String xid = RootContext.getXID();
 
-		if (!StringUtils.isEmpty(xid)) {
+		if (!ObjectUtils.isEmpty(xid)) {
 			requestWrapper.getHeaders().add(RootContext.KEY_XID, xid);
 		}
 		return clientHttpRequestExecution.execute(requestWrapper, bytes);

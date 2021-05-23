@@ -26,7 +26,7 @@ import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.cloud.client.serviceregistry.ServiceRegistry;
 import org.springframework.context.event.EventListener;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author xiaojing
@@ -101,7 +101,7 @@ public class NacosAutoServiceRegistration
 	@SuppressWarnings("deprecation")
 	protected String getAppName() {
 		String appName = registration.getNacosDiscoveryProperties().getService();
-		return StringUtils.isEmpty(appName) ? super.getAppName() : appName;
+		return ObjectUtils.isEmpty(appName) ? super.getAppName() : appName;
 	}
 
 	@EventListener

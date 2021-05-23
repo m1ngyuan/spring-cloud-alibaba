@@ -35,7 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Convert sentinel rules for json or xml array Using strict mode to parse json or xml.
@@ -76,7 +76,7 @@ public abstract class SentinelConverter<T extends Object>
 			ruleCollection = new HashSet<>();
 		}
 
-		if (StringUtils.isEmpty(source)) {
+		if (ObjectUtils.isEmpty(source)) {
 			log.warn("converter can not convert rules because source is empty");
 			return ruleCollection;
 		}
